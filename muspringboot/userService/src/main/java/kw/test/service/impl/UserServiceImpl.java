@@ -1,8 +1,6 @@
 package kw.test.service.impl;
 
 import kw.test.dao.UserRepository;
-import kw.test.dao.imp.UserRespositoryImpl;
-import kw.test.domain.User;
 import kw.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +13,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRespositoryImpl userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public void setUserRepository(UserRespositoryImpl repository){
+    public void setUserRepository(UserRepository repository){
         this.userRepository = repository;
     }
 
     @Override
     public void save() {
-        userRepository.save();
+        userRepository.findAll();
     }
 }
