@@ -8,4 +8,4 @@
 
 多模块通过pom来体现依赖关系。
 
-接口测试地址http://localhost:8080/sae
+接口测试地址http://localhost:8080/save
