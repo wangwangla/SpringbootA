@@ -1,5 +1,6 @@
 package kw.test.service;
 
+import kw.test.domain.User;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,5 +8,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService {
-    public void save();
+    public void save(User user);
 }
