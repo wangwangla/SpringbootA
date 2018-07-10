@@ -9,7 +9,7 @@ public class UserResponse<T> {
     private Integer code;
     private String msg;
     private Object object;
-
+    private List<T> objectList;
     public UserResponse(Integer code, String msg, Object object, List<T> objectList) {
         this.code = code;
         this.msg = msg;
@@ -52,6 +52,4 @@ public class UserResponse<T> {
     public UserResponse() {
 
     }
-
-    private List<T> objectList;
 }

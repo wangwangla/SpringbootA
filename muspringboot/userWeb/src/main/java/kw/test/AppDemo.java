@@ -2,15 +2,11 @@ package kw.test;
 
 import kw.test.domain.User;
 import kw.test.excepton.UserException;
+import kw.test.msg.UserMsg;
 import kw.test.response.UserResponse;
 import kw.test.service.UserService;
 import kw.test.service.impl.UserServiceImpl;
-import kw.test.userenum.UserEnum;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -30,8 +26,8 @@ public class AppDemo {
         userService.save(user);
        /* return "保存成功！";*/
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserEnum.USER_SAVE_SUCCESS.getCode());
-        userResponse.setMsg(UserEnum.USER_SAVE_SUCCESS.getMsg());
+        userResponse.setCode(UserMsg.USER_SAVE_SUCCESS.getCode());
+        userResponse.setMsg(UserMsg.USER_SAVE_SUCCESS.getMsg());
         userResponse.setObject(user);
         return userResponse;
     }
@@ -41,8 +37,8 @@ public class AppDemo {
         User user = userService.findById(id);
         userService.deleteUser(id);
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserEnum.USER_DELETE_SUCCESS.getCode());
-        userResponse.setMsg(UserEnum.USER_DELETE_SUCCESS.getMsg());
+        userResponse.setCode(UserMsg.USER_DELETE_SUCCESS.getCode());
+        userResponse.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
         userResponse.setObject(user);
         return userResponse;
     }
@@ -51,14 +47,14 @@ public class AppDemo {
         //将数据的封装放到service中还是在这里  以后的ID就从cookie取
         user = userService.findById(user.getId());
         if(user == null){
-            throw new UserException(UserEnum.USER_NOT_FOUND.getMsg());
+            throw new UserException(UserMsg.USER_NOT_FOUND.getMsg());
         }
         else {
             userService.update(user);
         }
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserEnum.USER_UPDATA_SUCCESS.getCode());
-        userResponse.setMsg(UserEnum.USER_UPDATA_SUCCESS.getMsg());
+        userResponse.setCode(UserMsg.USER_UPDATA_SUCCESS.getCode());
+        userResponse.setMsg(UserMsg.USER_UPDATA_SUCCESS.getMsg());
         userResponse.setObject(user);
         return userResponse;
     }
@@ -67,8 +63,8 @@ public class AppDemo {
         //将数据的封装放到service中还是在这里  以后的ID就从cookie取
         List<User> userList = userService.findAll();
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserEnum.USER_UPDATA_SUCCESS.getCode());
-        userResponse.setMsg(UserEnum.USER_UPDATA_SUCCESS.getMsg());
+        userResponse.setCode(UserMsg.USER_FINDALL_SUCCESS.getCode());
+        userResponse.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
         userResponse.setObjectList(userList);
         return userResponse;
     }

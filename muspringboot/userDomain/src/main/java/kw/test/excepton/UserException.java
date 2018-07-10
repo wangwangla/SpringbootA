@@ -5,8 +5,7 @@ package kw.test.excepton;
  */
 public class UserException extends Exception{
    private String msg;
-    public UserException(String msg)
-    {
+    public UserException(String msg) {
         this.msg = msg;
     }
 
