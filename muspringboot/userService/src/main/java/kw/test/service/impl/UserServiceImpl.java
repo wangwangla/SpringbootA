@@ -6,6 +6,7 @@ import kw.test.excepton.ArgumentNullExceptionHandler;
 import kw.test.excepton.UserException;
 import kw.test.msg.UserMsg;
 import kw.test.request.UserRequest;
+import kw.test.response.ReturnListValue;
 import kw.test.response.ReturnValue;
 import kw.test.response.tools.CookieUtils;
 import kw.test.service.UserService;
@@ -58,31 +59,55 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public ReturnValue save(User user) {
+        ArgumentNullExceptionHandler.checkArgument(user);
+
+        ReturnValue returnValue = new ReturnValue();
+        user = userRepository.save(user);
+        returnValue.setMsg(UserMsg.LOGIN_SUCCESS.getMsg());
+        returnValue.setObject(user);
+        return returnValue;
     }
 
     @Override
     public User findById(String id) {
+        ArgumentNullExceptionHandler.checkArgument(id);
         return userRepository.findById(id).get();
     }
 
     @Override
-    public void deleteUser(String id) throws UserException {
-        if(findById(id)==null){
-            throw new UserException(UserMsg.USER_NOT_FOUND.getMsg());
+    public ReturnValue deleteUser(String id) throws UserException {
+        ArgumentNullExceptionHandler.checkArgument(id);
+
+        ReturnValue returnValue = new ReturnValue();
+        User user = findById(id);
+        if(user == null) {
+            returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
+            return returnValue;
         }
+        returnValue.setObject(user);
+        returnValue.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
         userRepository.deleteById(id);
+        return returnValue;
     }
 
     @Override
     public void update(User user) {
+
         userRepository.save(user);
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public ReturnListValue<User> findAll() {
+        List<User> userList = userRepository.findAll();
+        ReturnListValue<User> returnListValue = new ReturnListValue<>();
+        if(userList.size()>0) {
+            returnListValue.setObject(userList);
+            returnListValue.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
+            return returnListValue;
+        }
+        returnListValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
+        return returnListValue;
     }
 
     @Override
