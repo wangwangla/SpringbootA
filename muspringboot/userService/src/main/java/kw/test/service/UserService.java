@@ -2,6 +2,8 @@ package kw.test.service;
 
 import kw.test.domain.User;
 import kw.test.excepton.UserException;
+import kw.test.request.UserRequest;
+import kw.test.response.ReturnValue;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.List;
  */
 @Service
 public interface UserService {
+
+    ReturnValue login(UserRequest userRequest);
+
     public void save(User user);
 
     User findById(String id);
@@ -20,4 +25,6 @@ public interface UserService {
     void update(User user);
 
     List<User> findAll();
+
+    ReturnValue loginout();
 }

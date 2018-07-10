@@ -1,4 +1,4 @@
-package kw.test;
+package kw.test.controller;
 
 import kw.test.domain.User;
 import kw.test.excepton.UserException;
@@ -13,7 +13,7 @@ import java.util.List;
  * auther   kangwang
  */
 @RestController
-public class AppDemo {
+public class UserResource {
 
     private UserService userService;
 
@@ -26,10 +26,14 @@ public class AppDemo {
         userService.save(user);
        /* return "保存成功！";*/
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserMsg.USER_SAVE_SUCCESS.getCode());
-        userResponse.setMsg(UserMsg.USER_SAVE_SUCCESS.getMsg());
         userResponse.setObject(user);
         return userResponse;
+    }
+
+
+    @RequestMapping("/")
+    public  String test(@PathVariable("id") String id) throws UserException {
+        return "错误页面";
     }
 
     @PutMapping("delete/{id}")
@@ -37,8 +41,6 @@ public class AppDemo {
         User user = userService.findById(id);
         userService.deleteUser(id);
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserMsg.USER_DELETE_SUCCESS.getCode());
-        userResponse.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
         userResponse.setObject(user);
         return userResponse;
     }
@@ -53,8 +55,6 @@ public class AppDemo {
             userService.update(user);
         }
         UserResponse userResponse = new UserResponse();
-        userResponse.setCode(UserMsg.USER_UPDATA_SUCCESS.getCode());
-        userResponse.setMsg(UserMsg.USER_UPDATA_SUCCESS.getMsg());
         userResponse.setObject(user);
         return userResponse;
     }
@@ -64,8 +64,7 @@ public class AppDemo {
         List<User> userList = userService.findAll();
         UserResponse userResponse = new UserResponse();
         userResponse.setCode(UserMsg.USER_FINDALL_SUCCESS.getCode());
-        userResponse.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
-        userResponse.setObjectList(userList);
+
         return userResponse;
     }
 }

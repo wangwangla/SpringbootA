@@ -7,30 +7,15 @@ import java.util.List;
  */
 public class UserResponse<T> {
     private Integer code;
-    private String msg;
+
     private Object object;
-    private List<T> objectList;
-    public UserResponse(Integer code, String msg, Object object, List<T> objectList) {
+
+    public UserResponse() {
+    }
+
+    public UserResponse(Integer code, Object object) {
         this.code = code;
-        this.msg = msg;
         this.object = object;
-        this.objectList = objectList;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     public Object getObject() {
@@ -41,14 +26,12 @@ public class UserResponse<T> {
         this.object = object;
     }
 
-    public List<T> getObjectList() {
-        return objectList;
+    public Integer getCode() {
+
+        return code;
     }
 
-    public void setObjectList(List<T> objectList) {
-        this.objectList = objectList;
-    }
-
-    public UserResponse() {
+    public void setCode(Integer code) {
+        this.code = code;
     }
 }

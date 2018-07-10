@@ -11,6 +11,6 @@ public class UserExceptionHandler {
     @ExceptionHandler(value=UserException.class)
     public String  handlerRoleException(){
         System.out.print("我是啦啦啦！");
-        return "redirect:test";
+        return "/";
     }
 }
