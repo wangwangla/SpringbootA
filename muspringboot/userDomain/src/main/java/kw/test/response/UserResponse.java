@@ -50,6 +50,5 @@ public class UserResponse<T> {
     }
 
     public UserResponse() {
-
     }
 }

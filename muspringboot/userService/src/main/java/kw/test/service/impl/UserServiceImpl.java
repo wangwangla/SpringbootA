@@ -3,8 +3,8 @@ package kw.test.service.impl;
 import kw.test.dao.UserRepository;
 import kw.test.domain.User;
 import kw.test.excepton.UserException;
+import kw.test.msg.UserMsg;
 import kw.test.service.UserService;
-import kw.test.userenum.UserEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 ;import java.util.List;
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String id) throws UserException {
         if(findById(id)==null){
-            throw new UserException(UserEnum.USER_NOT_FOUND.getMsg());
+            throw new UserException(UserMsg.USER_NOT_FOUND.getMsg());
         }
         userRepository.deleteById(id);
     }

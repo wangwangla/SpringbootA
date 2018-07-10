@@ -11,7 +11,8 @@ public enum  UserMsg {
     USER_SAVE_SUCCESS (2,"保存成功！"),
     USER_NOT_FOUND(3,"未找到数据"),
     USER_UPDATA_SUCCESS (4,"用户更新成功！"),
-    USER_FINDALL_SUCCESS (5,"查找成功！") ;
+    USER_FINDALL_SUCCESS (5,"查找成功！") ,
+    USER_LOGIN_DEFAULT(6,"未登陆");
     private Integer code;
     private String msg;
 
