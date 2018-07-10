@@ -9,3 +9,14 @@
 多模块通过pom来体现依赖关系。
 
 接口测试地址http://localhost:8080/save
+
+git使用说明
+如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，这样后面就可以不加任何参数使用git push。
+
+-u指定主机 
+
+一般使用步骤：
+（1）git add ./ 
+（2）commit -m "说明"
+（3）git push -u origin master (可以选择其他的分支等)
+
