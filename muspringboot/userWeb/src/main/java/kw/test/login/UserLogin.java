@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * auther   kangwang
  */
-@RestController
+
 public interface UserLogin {
     @PostMapping ("login")
     public UserResponse login(@RequestBody UserRequest userRequest) ;
     @RequestMapping("loginout")
     public UserResponse loginout();
+    @RequestMapping("/")
+    public UserResponse token();
 }

@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * auther   kangwang
  */
+@RestController
 public class UserResourceImpl implements UserResource {
     private UserService userService;
 
@@ -23,7 +24,6 @@ public class UserResourceImpl implements UserResource {
         this.userService = userService;
     }
 
-    @PostMapping("save")
     public UserResponse userAdd(@RequestBody User user){
         ReturnValue returnValue =userService.save(user);
         /* return "保存成功！";*/
@@ -32,7 +32,6 @@ public class UserResourceImpl implements UserResource {
         return userResponse;
     }
 
-    @PutMapping("delete/{id}")
     public  UserResponse deleteUser(@PathVariable("id") String id) throws UserException {
         ReturnValue returnValue = userService.deleteUser(id);
         UserResponse userResponse = new UserResponse();
@@ -40,8 +39,8 @@ public class UserResourceImpl implements UserResource {
         return userResponse;
     }
 
-    @PostMapping("edit")
-    public  UserResponse deleteUser(@RequestBody User user) throws UserException {
+
+    public  UserResponse edit(@RequestBody User user) throws UserException {
         //将数据的封装放到service中还是在这里  以后的ID就从cookie取
         user = userService.findById(user.getId());
         if(user == null){

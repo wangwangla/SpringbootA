@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
         returnValue.setMsg(UserMsg.LOGIN_SUCCESS.getMsg());
         /*设置token*/
         String token = UUID.randomUUID().toString();
-        stringRedisTemplate.opsForValue().set(token,user.getUsername(),30,TimeUnit.MINUTES);
+        stringRedisTemplate.opsForHash().increment(token,user,30);
         return returnValue;
     }
 

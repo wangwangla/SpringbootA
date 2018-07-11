@@ -22,7 +22,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Component
 @Aspect
 public class UserAuth {
-    @Pointcut("execution(public * kw.test.controller.*.*(..))")
+    @Pointcut("execution(public * kw.test.controller.impl.A.*(..))")
     public void role(){
 
     }

@@ -8,13 +8,14 @@ import kw.test.response.UserResponse;
 import kw.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * auther   kangwang
  */
 @RestController
-public class UserResourceImpl implements UserLogin {
+public class UserLoginImpl implements UserLogin {
 
     @Autowired private UserService userService;
 
@@ -32,6 +33,13 @@ public class UserResourceImpl implements UserLogin {
         UserResponse<User> userUserResponse = new UserResponse<>();
         /*userUserResponse.setObject(returnValue);*/
         return userUserResponse;
+    }
+
+    public UserResponse token(){
+        UserResponse userResponse = new UserResponse();
+        userResponse.setObject("wosssssssss");
+        userResponse.setCode(1000);
+        return userResponse;
     }
 
 }

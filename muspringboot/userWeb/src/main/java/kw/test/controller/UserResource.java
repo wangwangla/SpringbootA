@@ -12,16 +12,17 @@ import java.util.List;
 /**
  * auther   kangwang
  */
-@RestController
+@RequestMapping("/user")
 public interface UserResource {
 
+    @RequestMapping("save")
     public  UserResponse userAdd(@RequestBody User user);
 
     @PutMapping("delete/{id}")
     public  UserResponse deleteUser(@PathVariable("id") String id) throws UserException;
 
     @PostMapping("edit")
-    public  UserResponse deleteUser(@RequestBody User user) throws UserException;
+    public  UserResponse edit(@RequestBody User user) throws UserException;
 
     @GetMapping("findAll")
     public  UserResponse findAllUser() throws UserException;
