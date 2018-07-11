@@ -9,6 +9,7 @@ import kw.test.response.ReturnValue;
 import kw.test.response.UserResponse;
 import kw.test.service.UserService;
 import kw.test.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,10 @@ import java.util.List;
  */
 @RestController
 public class UserResourceImpl implements UserResource {
+
     private UserService userService;
 
+    @Autowired
     public void setUserService(UserServiceImpl userService){
         this.userService = userService;
     }
@@ -40,17 +43,11 @@ public class UserResourceImpl implements UserResource {
     }
 
 
-    public  UserResponse edit(@RequestBody User user) throws UserException {
+    public  UserResponse edit(@RequestBody User updataUser) throws UserException {
         //将数据的封装放到service中还是在这里  以后的ID就从cookie取
-        user = userService.findById(user.getId());
-        if(user == null){
-            throw new UserException(UserMsg.USER_NOT_FOUND.getMsg());
-        }
-        else {
-            userService.update(user);
-        }
         UserResponse userResponse = new UserResponse();
-        userResponse.setObject(user);
+        ReturnValue returnValue = userService.update(updataUser);
+        userResponse.setObject(returnValue);
         return userResponse;
     }
 

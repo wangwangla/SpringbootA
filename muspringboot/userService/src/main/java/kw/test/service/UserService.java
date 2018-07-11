@@ -23,9 +23,11 @@ public interface UserService {
 
     ReturnValue deleteUser(String id) throws UserException;
 
-    void update(User user);
+    ReturnValue update(User user);
 
     ReturnListValue<User> findAll();
 
     ReturnValue loginout();
+
+    ReturnValue findUserById(String id);
 }

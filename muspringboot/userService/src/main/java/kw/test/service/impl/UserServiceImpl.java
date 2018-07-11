@@ -54,17 +54,16 @@ public class UserServiceImpl implements UserService {
         returnValue.setMsg(UserMsg.LOGIN_SUCCESS.getMsg());
         /*设置token*/
         String token = UUID.randomUUID().toString();
-        stringRedisTemplate.opsForHash().increment(token,user,30);
+        stringRedisTemplate.opsForValue().set(token,user.getUsername());
         return returnValue;
     }
 
     @Override
     public ReturnValue save(User user) {
         ArgumentNullExceptionHandler.checkArgument(user);
-
         ReturnValue returnValue = new ReturnValue();
         user = userRepository.save(user);
-        returnValue.setMsg(UserMsg.LOGIN_SUCCESS.getMsg());
+        returnValue.setMsg(UserMsg.USER_SAVE_SUCCESS.getMsg());
         returnValue.setObject(user);
         return returnValue;
     }
@@ -86,15 +85,24 @@ public class UserServiceImpl implements UserService {
             return returnValue;
         }
         returnValue.setObject(user);
-        returnValue.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
+        returnValue.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
         userRepository.deleteById(id);
         return returnValue;
     }
 
     @Override
-    public void update(User user) {
-
+    public ReturnValue update(User user) {
+        ArgumentNullExceptionHandler.checkArgument(user);
+        ReturnValue returnValue = new ReturnValue();
+        if(findById(user.getId())==null){
+            returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
+            returnValue.setObject(user);
+            return returnValue;
+        }
         userRepository.save(user);
+        returnValue.setObject(user);
+        returnValue.setMsg(UserMsg.USER_UPDATA_SUCCESS.getMsg());
+        return returnValue;
     }
 
     @Override
@@ -134,5 +142,13 @@ public class UserServiceImpl implements UserService {
         returnValue.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
 
         return returnValue;
+    }
+
+    @Override
+    public ReturnValue findUserById(String id) {
+        ReturnValue returnValue = new ReturnValue();
+        returnValue.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
+        returnValue.setObject(findById(id));
+         return returnValue;
     }
 }
