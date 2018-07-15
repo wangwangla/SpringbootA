@@ -21,6 +21,15 @@ public class MerchantInfo {
     @GenericGenerator(name="idGenerator", strategy="uuid")
     @GeneratedValue(generator="idGenerator")/*这句是必须的，不写会有问题。*/
     private String id;
+    private String username;
+    private String password;
+    private String gender;
+    private String address;
+    private String image;
+    private String registerNumber;
+    private Date createTime;
+    private Time closeTime;
+    private Time openTime;
 
     public String getId() {
         return id;
@@ -31,17 +40,27 @@ public class MerchantInfo {
         this.id = id;
     }
 
-    private String username;
-    private String gender;
-    private String address;
-    private String image;
-    private String registerNumber;
-    private Date createTime;
-    private Time closeTime;
-    private Time openTime;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    protected List<MerchantCategory> categoryList;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public MerchantInfo(String username, String password, String gender, String address, String image, String registerNumber, Date createTime, Time closeTime, Time openTime) {
+
+        this.username = username;
+        this.password = password;
+        this.gender = gender;
+        this.address = address;
+        this.image = image;
+        this.registerNumber = registerNumber;
+        this.createTime = createTime;
+        this.closeTime = closeTime;
+        this.openTime = openTime;
+    }
 
 
     public String getUsername() {
@@ -112,6 +131,7 @@ public class MerchantInfo {
     public MerchantInfo(String username, String gender, String address, String image, String registerNumber, Date createTime, Time closeTime, Time openTime) {
 
         this.username = username;
+
         this.gender = gender;
         this.address = address;
         this.image = image;
@@ -119,11 +139,25 @@ public class MerchantInfo {
         this.createTime = createTime;
         this.closeTime = closeTime;
         this.openTime = openTime;
-        categoryList = new ArrayList<>();
     }
 
     public MerchantInfo() {
 
-        categoryList = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "MerchantInfo{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
+                ", registerNumber='" + registerNumber + '\'' +
+                ", createTime=" + createTime +
+                ", closeTime=" + closeTime +
+                ", openTime=" + openTime +
+                '}';
     }
 }

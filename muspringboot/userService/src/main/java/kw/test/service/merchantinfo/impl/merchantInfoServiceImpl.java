@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * auther   kangwang
@@ -43,35 +44,36 @@ public class merchantInfoServiceImpl implements MerchantInfoService {
     @Override
     public ReturnValue deleteMerchantInfo(String id) {
         ArgumentNullExceptionHandler.checkArgument(id);
-        MerchantInfo merchantInfo = merchantResponsitry.findById(id).get();
         ReturnValue returnValue = new ReturnValue();
-        if(merchantInfo==null)
-        {
+        try {
+            Optional<MerchantInfo> optionalMerchantInfo = merchantResponsitry.findById(id);
+            merchantResponsitry.deleteById(id);
+            returnValue.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
+            returnValue.setObject(optionalMerchantInfo.get());
+            return returnValue;
+        }catch(Exception e) {
             returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
             returnValue.setObject(id);
             return returnValue;
         }
-        merchantResponsitry.deleteById(id);
-        returnValue.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
-        returnValue.setObject(merchantInfo);
-        return returnValue;
     }
 
     @Override
     public ReturnValue updateMerchantInfo(MerchantInfoRequest merchantInfoRequest) {
         ArgumentNullExceptionHandler.checkArgument(merchantInfoRequest);
-        MerchantInfo merchantInfo = merchantResponsitry.findById(merchantInfoRequest.getId()).get();
+        MerchantInfo merchantInfo = null;
         ReturnValue returnValue = new ReturnValue();
-        if(merchantInfo==null)
-        {
+        try {
+            merchantInfo = merchantResponsitry.findById(merchantInfoRequest.getId()).get();
+            merchantResponsitry.save(merchantInfo);
+            returnValue.setMsg(UserMsg.USER_SAVE_SUCCESS.getMsg());
+            returnValue.setObject(merchantInfo);
+            return returnValue;
+        }catch (Exception e){
             returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
             returnValue.setObject(merchantInfoRequest);
             return returnValue;
         }
-        merchantResponsitry.save(merchantInfo);
-        returnValue.setMsg(UserMsg.USER_DELETE_SUCCESS.getMsg());
-        returnValue.setObject(merchantInfo);
-        return returnValue;
     }
 
     @Override

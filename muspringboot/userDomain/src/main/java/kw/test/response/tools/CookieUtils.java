@@ -40,6 +40,7 @@ public class CookieUtils {
             //遍历cookie
             for(Cookie cookie : cookies)
             {
+                System.out.print(cookie.getValue()+"-------------------------");
                 /**
                  * 将变量的cookie放入一个map中，目的是为了是将查找方法
                  * 个人看法 将其存为map可以使用它的包含方法

@@ -1,5 +1,7 @@
 package kw.test.domain.user;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,24 +9,32 @@ import java.util.List;
 /**
  * auther   kangwang
  */
+@Entity
 public class UserInfo {
+    @Id
     private String id;
     private String userName;
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", registerTime=" + registerTime +
+                '}';
+    }
+
     private String passWord;
     private String gender;
     private Integer age;
     private String tel;
     private String address;
     private Date registerTime;
-
-    public List<UserOrder> getUserOrderList() {
-        return userOrderList;
-    }
-
-    public void setUserOrderList(List<UserOrder> userOrderList) {
-        this.userOrderList = userOrderList;
-    }
-
     public UserInfo(String id, String userName, String passWord, String gender, Integer age, String tel, String address, Date registerTime, List<UserOrder> userOrderList) {
 
         this.id = id;
@@ -35,10 +45,8 @@ public class UserInfo {
         this.tel = tel;
         this.address = address;
         this.registerTime = registerTime;
-        this.userOrderList = userOrderList;
     }
 
-    private List<UserOrder> userOrderList = new ArrayList<UserOrder>();
 
     public String getId() {
         return id;

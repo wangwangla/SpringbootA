@@ -5,7 +5,6 @@ import java.util.Date;
 
 /**
  * auther   kangwang
- * 2018/7/11
  */
 public class MerchantInfoRequest {
     private String id;
@@ -18,20 +17,7 @@ public class MerchantInfoRequest {
         this.id = id;
     }
 
-    private String username;
-    private String gender;
-    private String address;
-    private String image;
-    private String registerNumber;
-    private Date createTime;
-    private Time closeTime;
-    private Time openTime;
-
-    public MerchantInfoRequest() {
-    }
-
     public String getUsername() {
-
         return username;
     }
 
@@ -95,8 +81,13 @@ public class MerchantInfoRequest {
         this.openTime = openTime;
     }
 
-    public MerchantInfoRequest(String username, String gender, String address, String image, String registerNumber, Date createTime, Time closeTime, Time openTime) {
+    public MerchantInfoRequest() {
 
+    }
+
+    public MerchantInfoRequest(String id, String username, String gender, String address, String image, String registerNumber, Date createTime, Time closeTime, Time openTime) {
+
+        this.id = id;
         this.username = username;
         this.gender = gender;
         this.address = address;
@@ -107,18 +98,12 @@ public class MerchantInfoRequest {
         this.openTime = openTime;
     }
 
-    @Override
-    public String toString() {
-        return "MerchantInfoRequest{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
-                ", registerNumber='" + registerNumber + '\'' +
-                ", createTime=" + createTime +
-                ", closeTime=" + closeTime +
-                ", openTime=" + openTime +
-                '}';
-    }
+    private String username;
+    private String gender;
+    private String address;
+    private String image;
+    private String registerNumber;
+    private Date createTime;
+    private Time closeTime;
+    private Time openTime;
 }

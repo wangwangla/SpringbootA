@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MerchantCategoryRepository extends JpaRepository<MerchantCategory,String> {
+    public MerchantCategory findMerchantCategoryByCategory(String category);
 }

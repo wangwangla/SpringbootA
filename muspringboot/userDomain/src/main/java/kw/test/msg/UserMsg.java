@@ -1,5 +1,6 @@
 package kw.test.msg;
 
+import kw.test.excepton.ArgumentNullException;
 import kw.test.excepton.UserException;
 
 /**
@@ -13,7 +14,10 @@ public enum  UserMsg {
     USER_UPDATA_SUCCESS (4,"用户更新成功！"),
     USER_FINDALL_SUCCESS (5,"查找成功！") ,
     USER_LOGIN_DEFAULT(6,"未登陆"),
-    LOGIN_SUCCESS (7,"用户登录成功！") ;
+    LOGIN_SUCCESS (7,"用户登录成功！") ,
+    USER_EXITS_AREADY(8,"用户已经存在"),
+    USER_LOGIN_SUCCESS (9,"用户登录成功！") ,
+    USER_LOGINOUT_SUCCESS (10,"退出登录") ;
     private Integer code;
     private String msg;
 

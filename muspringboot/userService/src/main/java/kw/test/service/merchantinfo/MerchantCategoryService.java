@@ -1,6 +1,7 @@
 package kw.test.service.merchantinfo;
 
 import kw.test.request.MerchantCategoryRequest;
+import kw.test.response.ReturnListValue;
 import kw.test.response.ReturnValue;
 
 /**
@@ -14,5 +15,5 @@ public interface MerchantCategoryService {
 
     ReturnValue edit(MerchantCategoryRequest merchantCategoryRequest);
 
-    ReturnValue findAll();
+    ReturnListValue findAll();
 }

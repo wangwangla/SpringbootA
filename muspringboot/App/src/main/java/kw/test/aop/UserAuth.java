@@ -53,6 +53,7 @@ public class UserAuth {
         if(cookie==null){
             throw new UserException(UserMsg.USER_LOGIN_DEFAULT.getMsg());
         }else {
+            //每次来来之后，就会社会自一次时间
             cookie.setMaxAge(UserDefault.TOKEN_MAX_AGE);
         }
     }

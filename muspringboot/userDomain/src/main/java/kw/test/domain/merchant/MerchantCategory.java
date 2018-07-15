@@ -15,34 +15,17 @@ import java.util.Date;
 @Table(name = "merchant_category")
 public class MerchantCategory {
     @Id
-    @GenericGenerator(name="idGenerator", strategy="uuid")
-    @GeneratedValue(generator="idGenerator")
     private String id;
     private String category;
     private Date createTime;
     private String description;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private MerchantInfo merchantInfo;
+    private String merchant_id;
 
-    public MerchantInfo getMerchantInfo() {
-        return merchantInfo;
-    }
-
-    public void setMerchantInfo(MerchantInfo merchantInfo) {
-        this.merchantInfo = merchantInfo;
-    }
-
-    public MerchantCategory(String category, Date createTime, String description, MerchantInfo merchantInfo) {
-
-        this.category = category;
-        this.createTime = createTime;
-        this.description = description;
-        this.merchantInfo = merchantInfo;
+    public MerchantCategory() {
     }
 
     public String getId() {
         return id;
-
     }
 
     public void setId(String id) {
@@ -73,15 +56,20 @@ public class MerchantCategory {
         this.description = description;
     }
 
-    public MerchantCategory(String id, String category, Date createTime, String description) {
+    public String getMerchant_id() {
+        return merchant_id;
+    }
+
+    public void setMerchant_id(String merchant_id) {
+        this.merchant_id = merchant_id;
+    }
+
+    public MerchantCategory(String id, String category, Date createTime, String description, String merchant_id) {
 
         this.id = id;
         this.category = category;
         this.createTime = createTime;
         this.description = description;
-    }
-
-    public MerchantCategory() {
-
+        this.merchant_id = merchant_id;
     }
 }
