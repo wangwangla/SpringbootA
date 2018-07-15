@@ -39,18 +39,19 @@ public class MerchantCategoryServiceImpl implements MerchantCategoryService {
     @Override
     public ReturnValue save(MerchantCategoryRequest merchantCategoryRequest) {
         ArgumentNullExceptionHandler.checkArgument(merchantCategoryRequest);
-
+        /*创建merchantcategory*/
         MerchantCategory merchantCategory = new MerchantCategory();
         ReturnValue returnValue = new ReturnValue();
+        //首先查找，是否含有，不可以添加重复的数据
         MerchantCategory merchantCategory1 = merchantCategoryRepository.findMerchantCategoryByCategory(merchantCategoryRequest.getCategory());
-        if(merchantCategory!=null) {
+        if(merchantCategory1!=null) {
             returnValue.setMsg(UserMsg.USER_EXITS_AREADY.getMsg());
             return returnValue;
         }
+        /*没有的时候，将请求数据变为merchantcategory*/
         BeanUtils.copyProperties(merchantCategoryRequest,merchantCategory);
+        //设置时间
         merchantCategory.setCreateTime(new Date());
-
-
         ServletRequestAttributes attributes =(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         HttpServletResponse response = attributes.getResponse();
@@ -60,6 +61,7 @@ public class MerchantCategoryServiceImpl implements MerchantCategoryService {
             return returnValue;
         }
         MerchantInfo merchantInfo = (MerchantInfo) redisTemplate.opsForValue().get(cookie.getValue());
+        //设置id值
         merchantCategory.setMerchant_id(merchantInfo.getId());
         merchantCategoryRepository.save(merchantCategory);
         returnValue.setMsg(UserMsg.USER_SAVE_SUCCESS.getMsg());
@@ -72,6 +74,7 @@ public class MerchantCategoryServiceImpl implements MerchantCategoryService {
         ArgumentNullExceptionHandler.checkArgument(id);
 
         ReturnValue returnValue = new ReturnValue();
+        //删除之前先将数据差一下，是否函有数据，有了在执行删除操作
         MerchantCategory merchantCategory = merchantCategoryRepository.findById(id).get();
         if (merchantCategory==null) {
             returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
