@@ -1,5 +1,6 @@
 package kw.test.dao.merchant;
 
+
 import kw.test.domain.merchant.MerchantCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MerchantCategoryRepository extends JpaRepository<MerchantCategory,String> {
-    public MerchantCategory findMerchantCategoryByCategory(String category);
+    MerchantCategory findMerchantCategoryByCategoryAndMerchantId(String category,String merchantId);
 }

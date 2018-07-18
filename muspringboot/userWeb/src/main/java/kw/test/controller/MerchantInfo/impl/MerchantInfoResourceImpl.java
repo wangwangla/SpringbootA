@@ -52,4 +52,12 @@ public class  MerchantInfoResourceImpl implements MerchantInfoResource {
         userResponse.setObject(returnListValue);
         return userResponse;
     }
+
+    @Override
+    public UserResponse findByName(String username) {
+        UserResponse userResponse = new UserResponse();
+        ReturnValue returnValue = merchantInfoService.findByMerchantName(username);
+        userResponse.setObject(returnValue);
+        return userResponse;
+    }
 }

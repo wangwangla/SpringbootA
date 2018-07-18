@@ -22,5 +22,8 @@ public interface MerchantInfoResource {
 
     @GetMapping("/findAll")
     UserResponse findAll();
+
+    @GetMapping("/findByname")
+    UserResponse findByName(String username);
 }
 

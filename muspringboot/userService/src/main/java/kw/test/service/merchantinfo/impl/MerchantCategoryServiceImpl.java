@@ -42,16 +42,6 @@ public class MerchantCategoryServiceImpl implements MerchantCategoryService {
         /*创建merchantcategory*/
         MerchantCategory merchantCategory = new MerchantCategory();
         ReturnValue returnValue = new ReturnValue();
-        //首先查找，是否含有，不可以添加重复的数据
-        MerchantCategory merchantCategory1 = merchantCategoryRepository.findMerchantCategoryByCategory(merchantCategoryRequest.getCategory());
-        if(merchantCategory1!=null) {
-            returnValue.setMsg(UserMsg.USER_EXITS_AREADY.getMsg());
-            return returnValue;
-        }
-        /*没有的时候，将请求数据变为merchantcategory*/
-        BeanUtils.copyProperties(merchantCategoryRequest,merchantCategory);
-        //设置时间
-        merchantCategory.setCreateTime(new Date());
         ServletRequestAttributes attributes =(ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         HttpServletResponse response = attributes.getResponse();
@@ -61,8 +51,19 @@ public class MerchantCategoryServiceImpl implements MerchantCategoryService {
             return returnValue;
         }
         MerchantInfo merchantInfo = (MerchantInfo) redisTemplate.opsForValue().get(cookie.getValue());
+        String merchantCategoryId = merchantInfo.getId();
+        //首先查找，是否含有，不可以添加重复的数据
+        MerchantCategory merchantCategory1 = merchantCategoryRepository.findMerchantCategoryByCategoryAndMerchantId(merchantCategoryRequest.getCategory(),merchantCategoryId);
+        if(merchantCategory1!=null) {
+            returnValue.setMsg(UserMsg.USER_EXITS_AREADY.getMsg());
+            return returnValue;
+        }
+        /*没有的时候，将请求数据变为merchantcategory*/
+        BeanUtils.copyProperties(merchantCategoryRequest,merchantCategory);
+        //设置时间
+        merchantCategory.setCreateTime(new Date());
         //设置id值
-        merchantCategory.setMerchant_id(merchantInfo.getId());
+        merchantCategory.setMerchantId(merchantCategoryId);
         merchantCategoryRepository.save(merchantCategory);
         returnValue.setMsg(UserMsg.USER_SAVE_SUCCESS.getMsg());
         returnValue.setObject(merchantCategory);

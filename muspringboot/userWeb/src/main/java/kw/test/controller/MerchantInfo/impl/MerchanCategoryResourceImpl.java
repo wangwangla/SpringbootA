@@ -5,7 +5,7 @@ import kw.test.request.MerchantCategoryRequest;
 import kw.test.response.ReturnListValue;
 import kw.test.response.ReturnValue;
 import kw.test.response.UserResponse;
-import kw.test.service.merchantinfo.impl.MerchantCategoryServiceImpl;
+import kw.test.service.merchantinfo.MerchantCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MerchanCategoryResourceImpl implements MerchantCategoryResource {
 
-    @Autowired private MerchantCategoryServiceImpl merchantCategoryService;
+    @Autowired private MerchantCategoryService merchantCategoryService;
 
     @Override
     public UserResponse saveMerchanCategory(@RequestBody MerchantCategoryRequest merchantCategoryRequest) {

@@ -1,7 +1,7 @@
 package kw.test.controller.login.impl;
 
 import kw.test.controller.login.UserLogin;
-import kw.test.domain.user.UserInfo;
+import kw.test.domain.merchant.MerchantInfo;
 import kw.test.request.MerchantLoginRequest;
 import kw.test.response.ReturnValue;
 import kw.test.response.UserResponse;
@@ -20,9 +20,9 @@ public class UserLoginImpl implements UserLogin {
     @Autowired private MerchantLoginService userInfoService;
 
     @Override
-    public UserResponse<UserInfo> login(@RequestBody MerchantLoginRequest userInfoRequest) {
+    public UserResponse<MerchantInfo> login(@RequestBody MerchantLoginRequest userInfoRequest) {
         ReturnValue returnValue = userInfoService.login(userInfoRequest);
-        UserResponse<UserInfo> userInfoUserResponse = new UserResponse<UserInfo>();
+        UserResponse<MerchantInfo> userInfoUserResponse = new UserResponse<MerchantInfo>();
         userInfoUserResponse.setObject(returnValue);
         return userInfoUserResponse;
     }

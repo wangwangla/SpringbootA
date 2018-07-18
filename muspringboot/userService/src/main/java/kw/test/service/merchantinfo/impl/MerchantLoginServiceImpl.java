@@ -2,7 +2,6 @@ package kw.test.service.merchantinfo.impl;
 
 import kw.test.dao.merchant.MerchantLoginRepositry;
 import kw.test.domain.merchant.MerchantInfo;
-import kw.test.domain.user.UserInfo;
 import kw.test.excepton.ArgumentNullExceptionHandler;
 import kw.test.msg.UserMsg;
 import kw.test.request.MerchantLoginRequest;

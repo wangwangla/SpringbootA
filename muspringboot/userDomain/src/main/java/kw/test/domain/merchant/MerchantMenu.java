@@ -18,18 +18,16 @@ public class MerchantMenu {
     @GenericGenerator(name="idGenerator", strategy="uuid")
     @GeneratedValue(generator="idGenerator")
     private String id;
-    private String category;
     private String menuName;
     private Date createTime;
-    private String mercateCategory_id;
+    private String mercateCategory_id;//标识一个分类
 
     public MerchantMenu() {
     }
 
-    public MerchantMenu(String id, String category, String menuName, Date createTime, String mercateCategory_id) {
+    public MerchantMenu(String id, String menuName, Date createTime, String mercateCategory_id) {
 
         this.id = id;
-        this.category = category;
         this.menuName = menuName;
         this.createTime = createTime;
         this.mercateCategory_id = mercateCategory_id;
@@ -41,14 +39,6 @@ public class MerchantMenu {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getMenuName() {
@@ -79,7 +69,6 @@ public class MerchantMenu {
     public String toString() {
         return "MerchantMenu{" +
                 "id='" + id + '\'' +
-                ", category='" + category + '\'' +
                 ", menuName='" + menuName + '\'' +
                 ", createTime=" + createTime +
                 ", mercateCategory_id='" + mercateCategory_id + '\'' +

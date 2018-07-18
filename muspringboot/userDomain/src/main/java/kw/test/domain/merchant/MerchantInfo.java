@@ -1,5 +1,6 @@
 package kw.test.domain.merchant;
 
+import kw.test.usercontant.UserDefault;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -30,6 +31,7 @@ public class MerchantInfo {
     private Date createTime;
     private Time closeTime;
     private Time openTime;
+    private String status;
 
     public String getId() {
         return id;
@@ -128,10 +130,17 @@ public class MerchantInfo {
         this.openTime = openTime;
     }
 
+    public void setStatus(String status) {
+        this.status = UserDefault.MERCHANT_ACK;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
     public MerchantInfo(String username, String gender, String address, String image, String registerNumber, Date createTime, Time closeTime, Time openTime) {
 
         this.username = username;
-
         this.gender = gender;
         this.address = address;
         this.image = image;

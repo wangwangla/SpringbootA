@@ -17,7 +17,9 @@ public enum  UserMsg {
     LOGIN_SUCCESS (7,"用户登录成功！") ,
     USER_EXITS_AREADY(8,"用户已经存在"),
     USER_LOGIN_SUCCESS (9,"用户登录成功！") ,
-    USER_LOGINOUT_SUCCESS (10,"退出登录") ;
+    USER_LOGINOUT_SUCCESS (10,"退出登录") ,
+    USER_ACTIVE_SUCCESS(11,"激活成功"),
+    USER_FROST_SUCCESS(12,"冻结成功.");
     private Integer code;
     private String msg;
 

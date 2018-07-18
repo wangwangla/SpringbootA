@@ -88,4 +88,42 @@ public class merchantInfoServiceImpl implements MerchantInfoService {
         returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
         return returnValue;
     }
+
+    /**
+     * 通过名字查找
+     */
+    @Override
+    public ReturnValue findByMerchantName(String merchantName) {
+        ReturnValue returnValue = new ReturnValue();
+        MerchantInfo merchantInfo = merchantResponsitry.findMerchantInfoByUsername(merchantName);
+        if(merchantInfo == null) {
+            returnValue.setMsg(UserMsg.USER_NOT_FOUND.getMsg());
+            return returnValue;
+        }
+        returnValue.setObject(merchantInfo);
+        returnValue.setMsg(UserMsg.USER_FINDALL_SUCCESS.getMsg());
+        return returnValue;
+    }
+
+    @Override
+    public ReturnValue activateMerchant(String id) {
+        return null;
+    }
+
+    @Override
+    public ReturnValue frostMerchant(String id) {
+        return null;
+    }
+
+    @Override
+    public ReturnValue findByActiveMerchant() {
+        return null;
+    }
+
+    @Override
+    public ReturnValue findByForstMerchant() {
+        return null;
+    }
+
+
 }

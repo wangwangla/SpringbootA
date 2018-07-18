@@ -4,7 +4,7 @@ package kw.test.excepton;
  * auther   kangwang
  * 2018/7/10
  */
-public class ArgumentNullException extends Throwable {
+public class ArgumentNullException extends RuntimeException {
     private String msg;
 
     public ArgumentNullException() {

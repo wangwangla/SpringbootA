@@ -15,11 +15,13 @@ import java.util.Date;
 @Table(name = "merchant_category")
 public class MerchantCategory {
     @Id
+    @GenericGenerator(name="idGenerator", strategy="uuid")
+    @GeneratedValue(generator="idGenerator")
     private String id;
     private String category;
     private Date createTime;
     private String description;
-    private String merchant_id;
+    private String merchantId;//标识一个商户
 
     public MerchantCategory() {
     }
@@ -56,20 +58,19 @@ public class MerchantCategory {
         this.description = description;
     }
 
-    public String getMerchant_id() {
-        return merchant_id;
+    public String getMerchantId() {
+        return merchantId;
     }
 
-    public void setMerchant_id(String merchant_id) {
-        this.merchant_id = merchant_id;
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
     }
 
-    public MerchantCategory(String id, String category, Date createTime, String description, String merchant_id) {
+    public MerchantCategory(String category, Date createTime, String description, String merchantId) {
 
-        this.id = id;
         this.category = category;
         this.createTime = createTime;
         this.description = description;
-        this.merchant_id = merchant_id;
+        this.merchantId = merchantId;
     }
 }
